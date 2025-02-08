@@ -1,0 +1,26 @@
+replicaCount: 2
+
+image:
+  repository: nginx
+  tag: "1.21.6"
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  hosts:
+    - "nginx.local"
+    - "dev.nginx.local"
+
+config:
+  nginxConf: |
+    server {
+        listen 80;
+        server_name {{ .Values.ingress.hosts | join " " }};
+        location / {
+            root /usr/share/nginx/html;
+            index index.html index.htm;
+        }
+    }

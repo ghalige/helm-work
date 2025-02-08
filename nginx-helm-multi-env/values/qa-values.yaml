@@ -1,0 +1,24 @@
+replicaCount: 2
+
+image:
+  tag: "1.21.6"
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  hosts:
+    - host: qa-nginx.local
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 256Mi
+  requests:
+    cpu: 250m
+    memory: 128Mi
+
+persistence:
+  enabled: true
+  size: 1Gi

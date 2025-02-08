@@ -1,0 +1,8 @@
+Install & Verify
+sh
+Copy
+Edit
+helm install my-nginx ./nginx-helm-chart
+kubectl get ingress
+kubectl get deployment my-nginx-nginx -o yaml
+kubectl get svc my-nginx-nginx -o yaml

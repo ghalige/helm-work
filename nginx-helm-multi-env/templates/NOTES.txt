@@ -1,0 +1,36 @@
+Deploy for Development
+sh
+Copy
+Edit
+helm install nginx-dev ./nginx-helm-chart -f values-dev.yaml
+B. Deploy for QA
+sh
+Copy
+Edit
+helm install nginx-qa ./nginx-helm-chart -f values-qa.yaml
+C. Deploy for Production
+sh
+Copy
+Edit
+helm install nginx-prod ./nginx-helm-chart -f values-prod.yaml
+7. Managing the Deployments
+A. Upgrade a Release
+sh
+Copy
+Edit
+helm upgrade nginx-dev ./nginx-helm-chart -f values-dev.yaml
+B. Rollback a Release
+sh
+Copy
+Edit
+helm rollback nginx-dev 1
+C. Uninstall a Release
+sh
+Copy
+Edit
+helm uninstall nginx-dev
+D. View Installed Releases
+sh
+Copy
+Edit
+helm list

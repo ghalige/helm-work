@@ -1,0 +1,30 @@
+replicaCount: 5
+
+image:
+  tag: "stable"
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  hosts:
+    - host: prod-nginx.com
+
+resources:
+  limits:
+    cpu: 1
+    memory: 512Mi
+  requests:
+    cpu: 500m
+    memory: 256Mi
+
+persistence:
+  enabled: true
+  size: 10Gi
+
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 40

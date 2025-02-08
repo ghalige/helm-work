@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "nginx.fullname" . }}
+  labels:
+    app: nginx
+    environment: {{ .Values.environment | default "dev" | upper }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          {{- with .Values.image }}
+          image: "{{ .repository }}:{{ .tag }}"
+          {{- end }}
+          ports:
+            - containerPort: 80
+          
+          {{- if .Values.resources.enabled }}
+          resources:
+            limits:
+              cpu: {{ .Values.resources.limits.cpu }}
+              memory: {{ .Values.resources.limits.memory }}
+          {{- else }}
+          # No resource limits defined
+          {{- end }}

@@ -1,0 +1,23 @@
+replicaCount: 1
+
+image:
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  hosts:
+    - host: dev-nginx.local
+
+resources:
+  limits:
+    cpu: 250m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 64Mi
+
+persistence:
+  enabled: false
