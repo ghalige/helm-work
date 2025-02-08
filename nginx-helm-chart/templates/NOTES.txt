@@ -1,0 +1,40 @@
+nginx-helm-chart/
+│── charts/                  # Subcharts (if any)
+│── templates/
+│   ├── deployment.yaml       # NGINX Deployment
+│   ├── service.yaml          # Kubernetes Service
+│   ├── ingress.yaml          # Ingress Configuration
+│   ├── configmap.yaml        # ConfigMap for custom NGINX config
+│   ├── pvc.yaml              # Persistent Volume Claim
+│   ├── hpa.yaml              # Horizontal Pod Autoscaler
+│   ├── NOTES.txt             # Notes shown after installation
+│── values.yaml               # Configurable values
+│── Chart.yaml                # Chart metadata
+│── README.md                 # Documentation
+│── .helmignore               # Ignored files
+
+
+Install the Chart
+=========================================
+A. Package the Chart
+
+helm package nginx-helm-chart
+
+B. Install the Chart
+
+helm install my-nginx ./nginx-helm-chart
+
+C. Verify Deployment
+
+kubectl get pods
+kubectl get svc
+kubectl get ingress
+
+
+D. Upgrade the Release
+
+helm upgrade my-nginx ./nginx-helm-chart
+
+E. Uninstall the Chart
+
+helm uninstall my-nginx
