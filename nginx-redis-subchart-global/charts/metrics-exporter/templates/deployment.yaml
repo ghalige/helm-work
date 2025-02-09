@@ -1,0 +1,24 @@
+{{- if .Values.global.metricsExporterEnabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metrics-exporter
+  labels:
+    app: metrics-exporter
+    environment: {{ .Values.global.environment }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: metrics-exporter
+  template:
+    metadata:
+      labels:
+        app: metrics-exporter
+    spec:
+      containers:
+        - name: exporter
+          image: nginx/nginx-prometheus-exporter
+          ports:
+            - containerPort: {{ .Values.port }}
+{{- end }}

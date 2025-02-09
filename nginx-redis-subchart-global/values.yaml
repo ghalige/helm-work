@@ -1,0 +1,29 @@
+global:
+  environment: "production"
+  labels:
+    app: "nginx"
+    managedBy: "helm"
+
+nginx:
+  replicaCount: 2
+  image:
+    repository: nginx
+    tag: "1.21.6"
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  hosts:
+    - "nginx.local"
+    - "dev.nginx.local"
+
+redis:
+  enabled: true
+  storage: "1Gi"
+
+metrics-exporter:
+  enabled: true
+  port: 9113

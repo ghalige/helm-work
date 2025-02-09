@@ -1,0 +1,30 @@
+nginx-helm-chart/
+├── charts/
+│   ├── redis/
+│   │   ├── templates/
+│   │   ├── Chart.yaml
+│   │   ├── values.yaml
+│   │   ├── templates/deployment.yaml
+│   │   ├── templates/service.yaml
+│
+├── templates/
+│   ├── deployment.yaml
+│   ├── service.yaml
+│   ├── ingress.yaml
+│   ├── _helpers.tpl
+│
+├── Chart.yaml
+├── values.yaml
+
+
+helm install my-nginx ./nginx-helm-chart
+kubectl get pods
+kubectl get deployment my-nginx-nginx -o yaml
+kubectl get deployment redis -o yaml
+kubectl get deployment metrics-exporter -o yaml
+
+
+Summary
+🔹 Subcharts (charts/redis, charts/metrics-exporter) for modular components
+🔹 Global values (global.environment, global.labels) shared across all charts
+🔹 Parent chart manages configuration, subcharts inherit values
